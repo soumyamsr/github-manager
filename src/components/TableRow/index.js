@@ -15,12 +15,16 @@ class TableRow extends Component {
   }
 
   render() {
-    if (this.props.statusMessage) {
-      return <div className="error-message">{this.props.statusMessage}</div>;
-    } else if (this.props.repos && !this.props.repos.length) {
+    if (this.props.repos.message) {
+      return <div className="error-message">{this.props.repos.message}</div>;
+    } else if (
+      this.props.repos &&
+      this.props.repos.repos &&
+      !this.props.repos.repos.length
+    ) {
       return <div className="error-message">{messages.norepo}</div>;
     }
-    return this.props.repos.map(repo => {
+    return this.props.repos.repos.map(repo => {
       return (
         <li className="border-bottom table-row" key={repo.id}>
           {/* <Link to="/"> */}

@@ -1,17 +1,27 @@
+import config from "../../public/config.json";
+
 const repoIssues = (state = [], action) => {
   switch (action.type) {
     case "GET_ISSUES_SUCCESS":
       return {
         issues: action.issues,
+        items: action.issues.slice(0, config.ISSUES_ON_PAGE),
         status: true,
         message: ""
       };
       break;
     case "GET_ISSUES_FAILURE":
       return {
-        issues: {},
+        issues: [],
+        items: [],
         status: true,
         message: action.error
+      };
+      break;
+    case "CHANGE_PAGE":
+      return {
+        ...state,
+        items: action.payload
       };
       break;
 

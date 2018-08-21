@@ -26,9 +26,6 @@ class HomePage extends Component {
     return (
       <div className="home-page-wrapper">
         <div className="user-repo-form">
-          <span>
-            <h1 className="title">{labels.homepageHeader}</h1>
-          </span>
           <form className="githubform" onSubmit={this.searchRepo}>
             <input
               ref={this.githubUserName}
@@ -43,7 +40,7 @@ class HomePage extends Component {
         </div>
         <div className="user-repositories-list">
           <ul>
-            {this.props.repos || this.props.statusMessage ? (
+            {this.props.repos.repos || this.props.repos.message ? (
               <TableRow {...this.props} />
             ) : (
               ""

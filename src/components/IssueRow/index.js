@@ -20,16 +20,16 @@ class IssueRow extends Component {
       return <div className="error-message">{this.props.issues.message}</div>;
     } else if (
       this.props.issues &&
-      this.props.issues.issues &&
-      !this.props.issues.issues.length
+      this.props.issues.items &&
+      !this.props.issues.items.length
     ) {
       return <div className="error-message">{messages.noissues}</div>;
     } else if (
       this.props.issues &&
-      this.props.issues.issues &&
-      this.props.issues.issues.length
+      this.props.issues.items &&
+      this.props.issues.items.length
     ) {
-      return this.props.issues.issues.map(issue => {
+      return this.props.issues.items.map(issue => {
         return (
           <li className="border-bottom issue-row" key={issue.id}>
             <div className="issue-row-wrapper">

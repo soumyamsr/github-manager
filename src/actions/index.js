@@ -28,3 +28,10 @@ export const getIssuesError = (error, props) => {
     error
   });
 };
+
+export const changePage = (payload, props) => {
+  props.dispatch({
+    type: "CHANGE_PAGE",
+    payload
+  });
+};
