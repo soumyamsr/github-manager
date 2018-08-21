@@ -47,7 +47,8 @@ function mapStateToProps(store) {
   return {
     repos: store.userRepos.repos,
     status: store.userRepos.status,
-    statusMessage: store.userRepos.message
+    statusMessage: store.userRepos.message,
+    issues: store.repoIssues
   };
 }
 

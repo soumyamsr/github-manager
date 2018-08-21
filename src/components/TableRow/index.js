@@ -23,7 +23,7 @@ class TableRow extends Component {
     return this.props.repos.map(repo => {
       return (
         <li className="border-bottom table-row" key={repo.id}>
-          {/* <Link to={`/${repo.full_name}`}> */}
+          {/* <Link to="/"> */}
           <div className="table-row-wrapper">
             <div className="title">
               <h4>{repo.name}</h4>

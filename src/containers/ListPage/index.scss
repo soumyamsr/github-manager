@@ -1,0 +1,36 @@
+.list-page-wrapper {
+  width: 80%;
+  margin: 0 auto;
+
+  .user-issues-list {
+    margin: 20px 0;
+    border: 1px solid #e1e4e8;
+    border-radius: 10px;
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      .border-bottom:last-child {
+        border-bottom: 0;
+      }
+    }
+    .border-bottom {
+      border-bottom: 1px solid #e1e4e8;
+      .title {
+        display: inline-block;
+      }
+    }
+  }
+  .icon.status {
+    &::before {
+      font-size: 20px;
+      padding-right: 5px;
+    }
+    &.open::before {
+      content: "\2611";
+    }
+    &.close::before {
+      content: "\2612";
+    }
+  }
+}
