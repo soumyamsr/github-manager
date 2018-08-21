@@ -1,9 +1,9 @@
-GITHUb Manager
-................
+#GITHUb Manager
+---------------
 
 ## React and Redux app to view github repo and issues
 
-##To use this repo follow
+###To use this repo follow
 
  git clone this repo
 
