@@ -1,4 +1,4 @@
-GITHUb Manager
+GITHub Manager
 ---------------
 
 ## React and Redux app to view github repo and issues
