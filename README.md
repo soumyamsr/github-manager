@@ -3,7 +3,7 @@ GITHub Manager
 
 ## React and Redux app to view github repo and issues
 
-## To use this repo follow
+## To use this repo, do the following:
 
  - git clone https://github.com/soumyamsr/github-manager.git
 
