@@ -7,9 +7,9 @@ GITHUb Manager
 
  - git clone https://github.com/soumyamsr/github-manager.git
 
- - npm istall
+ - npm install
 
- - npm start   (To start webpack server in development mode)
+ - npm run start   (To start webpack server in development mode)
 
  - npm run build   (To build code for production)
 
