@@ -1,7 +1,4 @@
 import React, { Component, Fragment } from "react";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { getGithubUserRepo } from "../../actions/";
 import { Link } from "react-router";
 import Paginate from "react-paginate";
 
@@ -20,16 +17,15 @@ class ListPage extends Component {
   }
 
   componentDidMount() {
-    const gituser = "soumyamsr";
-    const gitrepo = "store-picker";
-    // const { gituser, gitrepo } = this.props.match.params;
+    // const gituser = "soumyamsr";
+    // const gitrepo = "store-picker";
+    const { gituser, gitrepo } = this.props.match.params;
     if (gituser && gitrepo) {
       fetch(`${config.GIT_REPO_ISSUE_URL}/${gituser}/${gitrepo}/issues`)
         .then(res => {
           return res.json();
         })
         .then(res => {
-          console.log(res);
           actions.getIssuesSuccess(res, this.props);
         })
         .catch(error => {

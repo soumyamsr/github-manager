@@ -70,6 +70,19 @@ button:hover {
   margin: 40px 0;
 }
 
+.icon.status {
+  &::before {
+    font-size: 20px;
+    padding-right: 5px;
+  }
+  &.open::before {
+    content: "\2611";
+  }
+  &.close::before {
+    content: "\2612";
+  }
+}
+
 .error-message {
   color: rgb(212, 63, 63);
   padding: 20px 0;

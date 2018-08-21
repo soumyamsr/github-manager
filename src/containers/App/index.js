@@ -35,7 +35,7 @@ class App extends Component {
               render={props => <ListPage {...this.props} />}
             />
             <Route
-              path="/:gituser/:gitrepo/issues/:issueId"
+              path="/:gituser/:gitrepo/issues/:issueid"
               render={props => <IssuePage {...this.props} />}
             />
             <Route path="*" component={NotFound} />
@@ -50,7 +50,8 @@ function mapStateToProps(store) {
   // console.log(store);
   return {
     repos: store.userRepos,
-    issues: store.repoIssues
+    issues: store.repoIssues,
+    issueDetail: store.issueDetail
   };
 }
 

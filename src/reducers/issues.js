@@ -14,7 +14,7 @@ const repoIssues = (state = [], action) => {
       return {
         issues: [],
         items: [],
-        status: true,
+        status: false,
         message: action.error
       };
       break;

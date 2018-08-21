@@ -35,3 +35,17 @@ export const changePage = (payload, props) => {
     payload
   });
 };
+
+export const fetchIssueSuccess = (issueDetail, props) => {
+  props.dispatch({
+    type: "FETCH_ISSUE_SUCCESS",
+    issueDetail
+  });
+};
+
+export const fetchIssueError = (error, props) => {
+  props.dispatch({
+    type: "FETCH_ISSUE_FAILURE",
+    error
+  });
+};

@@ -1,12 +1,10 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { getGithubUserRepo } from "../../actions/";
+import React, { Component, Fragment } from "react";
 import { Link } from "react-router";
 
+import config from "../../../public/config.json";
 import messages from "../../../public/messages.json";
-import TableRow from "../../components/TableRow/";
 import * as actions from "../../actions/";
+import { formatDate } from "../../utils/dateUtils";
 import "./index.scss";
 
 class IssuePage extends Component {
@@ -14,8 +12,52 @@ class IssuePage extends Component {
     super(props);
   }
 
+  componentDidMount() {
+    // const gituser = "soumyamsr";
+    // const gitrepo = "store-picker";
+    // const issueid = "1";
+    const { gituser, gitrepo, issueid } = this.props.match.params;
+    if (gituser && gitrepo && issueid) {
+      fetch(
+        `${config.GIT_REPO_ISSUE_URL}/${gituser}/${gitrepo}/issues/${issueid}`
+      )
+        .then(res => {
+          return res.json();
+        })
+        .then(res => {
+          actions.fetchIssueSuccess(res, this.props);
+        })
+        .catch(error => {
+          actions.fetchIssueError(error, this.props);
+        });
+    }
+  }
+
   render() {
-    return <div>Issue page</div>;
+    const detail = this.props.issueDetail
+      ? this.props.issueDetail.detail
+      : null;
+    return detail ? (
+      <section className="issue-detail-wrapper">
+        <div className="info-header">
+          <span className="issue-titile">{detail.title}</span>
+          <span className="issue-num">#{detail.number}</span>
+        </div>
+        <div className="info-desc">
+          <div className="issue-status">
+            <span className="icon status open" />
+            {detail.state}
+          </div>
+          <div className="issue-details">
+            <strong>{detail.user.login}</strong> opened this issue on{" "}
+            {formatDate(detail.created_at)} - {detail.comments} comments
+          </div>
+        </div>
+        <hr />
+      </section>
+    ) : (
+      ""
+    );
   }
 }
 
