@@ -5,7 +5,7 @@ GITHUb Manager
 
 ## To use this repo follow
 
- - git clone this repo
+ - git clone https://github.com/soumyamsr/github-manager.git
 
  - npm istall
 
