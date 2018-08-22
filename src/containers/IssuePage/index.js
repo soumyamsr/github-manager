@@ -13,10 +13,7 @@ class IssuePage extends Component {
   }
 
   componentDidMount() {
-    // const gituser = "soumyamsr";
-    // const gitrepo = "store-picker";
-    // const issueid = "1";
-    const { gituser, gitrepo, issueid } = this.props.match.params;
+    const { gituser, gitrepo, issueid } = this.props.params;
     if (gituser && gitrepo && issueid) {
       fetch(
         `${config.GIT_REPO_ISSUE_URL}/${gituser}/${gitrepo}/issues/${issueid}`

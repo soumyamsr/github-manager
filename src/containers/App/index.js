@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
-import { browserHistory } from "react-router";
+import { browserHistory, hashHistory } from "react-router";
 import { render } from "react-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -13,7 +13,7 @@ import * as actions from "../../actions/";
 import labels from "../../../public/labels.json";
 import "./index.scss";
 
-class App extends Component {
+class Main extends Component {
   constructor(props) {
     super(props);
   }
@@ -27,16 +27,22 @@ class App extends Component {
             <Route
               exact
               path="/"
-              render={props => <HomePage {...this.props} />}
+              render={props => (
+                <HomePage params={props.match.params} {...this.props} />
+              )}
             />
             <Route
               exact
               path="/:gituser/:gitrepo"
-              render={props => <ListPage {...this.props} />}
+              render={props => (
+                <ListPage params={props.match.params} {...this.props} />
+              )}
             />
             <Route
               path="/:gituser/:gitrepo/issues/:issueid"
-              render={props => <IssuePage {...this.props} />}
+              render={props => (
+                <IssuePage params={props.match.params} {...this.props} />
+              )}
             />
             <Route path="*" component={NotFound} />
           </Switch>
@@ -47,7 +53,7 @@ class App extends Component {
 }
 
 function mapStateToProps(store) {
-  // console.log(store);
+  console.log(store);
   return {
     repos: store.userRepos,
     issues: store.repoIssues,
@@ -59,4 +65,6 @@ function matchDispatchToProps(dispatch) {
   return bindActionCreators(actions, dispatch);
 }
 
-export default connect(mapStateToProps)(App);
+const App = connect(mapStateToProps)(Main);
+
+export default App;

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router";
+import { Redirect } from "react-router-dom";
 
 import messages from "../../../public/messages.json";
 import labels from "../../../public/labels.json";
@@ -11,12 +12,22 @@ class IssueRow extends Component {
     super(props);
   }
 
-  selectIssue(route) {
-    console.log("route: ", route);
+  state = {
+    redirect: false
+  };
+
+  selectIssue(issueid) {
+    // console.log("route: ", route);
+    const { gituser, gitrepo } = this.props.params;
+    this.setState({
+      redirect: `/${gituser}/${gitrepo}/issues/${issueid}`
+    });
   }
 
   render() {
-    if (this.props.issues.message) {
+    if (this.state.redirect) {
+      return <Redirect to={this.state.redirect} />;
+    } else if (this.props.issues.message) {
       return <div className="error-message">{this.props.issues.message}</div>;
     } else if (
       this.props.issues &&
@@ -31,7 +42,11 @@ class IssueRow extends Component {
     ) {
       return this.props.issues.items.map(issue => {
         return (
-          <li className="border-bottom issue-row" key={issue.id}>
+          <li
+            className="border-bottom issue-row"
+            key={issue.id}
+            onClick={() => this.selectIssue(issue.number)}
+          >
             <div className="issue-row-wrapper">
               <div className="title">
                 <div className="first-line">

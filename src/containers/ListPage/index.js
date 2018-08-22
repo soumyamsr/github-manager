@@ -17,9 +17,7 @@ class ListPage extends Component {
   }
 
   componentDidMount() {
-    // const gituser = "soumyamsr";
-    // const gitrepo = "store-picker";
-    const { gituser, gitrepo } = this.props.match.params;
+    const { gituser, gitrepo } = this.props.params;
     if (gituser && gitrepo) {
       fetch(`${config.GIT_REPO_ISSUE_URL}/${gituser}/${gitrepo}/issues`)
         .then(res => {
@@ -45,18 +43,30 @@ class ListPage extends Component {
         <section className="list-page-wrapper">
           <div className="user-issues-list">
             {this.props.issues ? <IssueHeader {...this.props} /> : ""}
-            <ul>{this.props.issues ? <IssueRow {...this.props} /> : ""}</ul>
+            <ul>
+              {this.props.issues ? (
+                <IssueRow params={this.props.params} {...this.props} />
+              ) : (
+                ""
+              )}
+            </ul>
           </div>
           <div className="issues__pagination">
-            <Paginate
-              forcePage={this.currentPage}
-              pageCount={pageCount}
-              marginPagesDisplayed={2}
-              pageRangeDisplayed={5}
-              onPageChange={this.handlePageChange}
-              nextLabel="&rarr;"
-              previousLabel="&larr;"
-            />
+            {this.props.issues &&
+            this.props.issues.items &&
+            this.props.issues.items.length ? (
+              <Paginate
+                forcePage={this.currentPage}
+                pageCount={pageCount}
+                marginPagesDisplayed={2}
+                pageRangeDisplayed={5}
+                onPageChange={this.handlePageChange}
+                nextLabel="&rarr;"
+                previousLabel="&larr;"
+              />
+            ) : (
+              ""
+            )}
           </div>
         </section>
       </Fragment>
